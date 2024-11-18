@@ -99,6 +99,7 @@ class GlslOut {
 	public var varNames : Map<Int,String>;
 	public var glES : Null<Float>;
 	public var version : Null<Int>;
+	public var precision : Null<String> = null;
 
 	/*
 		Intel HD driver fix:
@@ -811,10 +812,16 @@ class GlslOut {
 
 		if( isCompute ) {
 			// no prec
-		} else if( isVertex )
+		}  else if( precision != null ) {
+			decl('precision $precision float;');
+			decl('precision $precision int;');
+		} else if( isVertex ) {
 			decl("precision highp float;");
-		else
+			decl("precision highp int;");
+		} else {
 			decl("precision mediump float;");
+			decl("precision mediump int;");
+		}
 
 		initVars(s);
 
