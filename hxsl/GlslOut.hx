@@ -812,7 +812,7 @@ class GlslOut {
 
 		if( isCompute ) {
 			// no prec
-		}  else if( precision != null ) {
+		} else if( precision != null ) {
 			decl('precision $precision float;');
 			decl('precision $precision int;');
 		} else if( isVertex ) {
